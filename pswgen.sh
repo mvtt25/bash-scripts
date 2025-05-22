@@ -1,4 +1,9 @@
-pwgen() {
+#!/bin/bash
+
+# Remove Shebang to use this script in .zshrc or .bashrc
+
+
+pswgen() {
   RED='\033[0;31m'
   GREEN='\033[0;32m'
   YELLOW='\033[1;33m'
@@ -53,15 +58,19 @@ pwgen() {
     return
   fi
 
-  entropy=$(awk -v l="$len" -v c="$charset_size" 'BEGIN { print l * log(c)/log(2) }')
-  if (( $(echo "$entropy < 60" | bc -l) )); then
-    strength="${RED}Weak${NC}"
-  elif (( $(echo "$entropy < 100" | bc -l) )); then
-    strength="${YELLOW}Medium${NC}"
+  if command -v bc &> /dev/null; then
+    entropy=$(awk -v l="$len" -v c="$charset_size" 'BEGIN { print l * log(c)/log(2) }')
+    if (( $(echo "$entropy < 60" | bc -l) )); then
+      strength="${RED}Weak${NC}"
+    elif (( $(echo "$entropy < 100" | bc -l) )); then
+      strength="${YELLOW}Medium${NC}"
+    else
+      strength="${GREEN}Strong${NC}"
+    fi
+    echo -e "\n${CYAN}Key | Password strength: ${strength}.${NC}\n"
   else
-    strength="${GREEN}Strong${NC}"
+    echo -e  "${RED}I can't calculate entropy. Please install bc${NC}"
   fi
-  echo -e "\n${CYAN}Key | Password strength: ${strength}.${NC}\n"
 
   echo -ne "${YELLOW}Key | Do you want to copy it? (y/n) ${NC}"
   read copythat
@@ -82,3 +91,6 @@ pwgen() {
     *)    echo -e "${RED}! | Unrecognized input. Password: ${pass}${NC}" ;;
   esac
 }
+
+
+pswgen # Comment this to use script in .zshrc or .bashrc
