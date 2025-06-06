@@ -41,9 +41,11 @@ Below is a list of available scripts and a short description of what each does (
 
 | Script Name        | Description                            |
 |--------------------|----------------------------------------|
-| `backup.sh`        | Creates a backup of specified folders. |
-| `iplookup.sh`      | Provide IP Address Information.        |
+| `backup_auto.sh`   | Creates a backup of specified folders. |
+| `tmpcleaner.sh`    | Removes Temporary Files                |
+| `iplookup.sh`      | Provides IP Address Information.       |
 | `pswgen.sh`        | Simple Password Generator.             |
+
 
 ## 🧪 Contributing
 
