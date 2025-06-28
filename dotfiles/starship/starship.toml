@@ -1,0 +1,93 @@
+# PROMPT FORMAT
+format = """
+[╭╴╴╴╴](bold fg:#5b2b82)\
+$username\
+[](bg:#40375c fg:#5b2b82)\ 
+$directory\
+[](fg:#40375c bg:#2b2b40)\
+[](fg:#2b2b40 bg:#1a1a2e)\
+[](fg:#1a1a2e)\
+$cmd_duration\
+$line_break\
+[╰─](bold fg:#5b2b82)$character\
+"""
+
+right_format = """
+$time\
+$git_branch$git_status\
+$python$nodejs$rust$golang\
+"""
+add_newline = true
+
+# USERNAME
+[username]
+show_always = true
+style_user = "bold fg:#ffffff bg:#5b2b82"
+format = "[ $user ]($style)"
+
+# DIRECTORY
+[directory]
+style = "fg:#ffffff bg:#40375c"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+# GIT BRANCH
+[git_branch]
+symbol = ""
+format = "[ $symbol $branch ]($style)"
+
+# GIT STATUS
+[git_status]
+format = '[$all_status$ahead_behind]($style)'
+
+# PYTHON
+[python]
+symbol = ""
+style = "fg:#bd93f9 bg:#1a1a2e"
+format = "[ $symbol ($version) ]($style)"
+python_binary = "python3"
+
+# NODEJS
+[nodejs]
+symbol = ""
+style = "fg:#8be9fd"
+format = "[ $symbol ($version) ]($style)"
+
+# RUST
+[rust]
+symbol = ""
+style = "fg:#ff79c6"
+format = "[ $symbol ($version) ]($style)"
+
+# GOLANG
+[golang]
+symbol = ""
+style = "fg:#7aa2f7"
+format = "[ $symbol ($version) ]($style)"
+
+# COMMAND DURATION
+[cmd_duration]
+min_time = 1000
+style = "bold fg:#f38ba8"
+format = "[ ⌛took ($duration) ]($style)"
+
+# CHARACTER
+[character]
+success_symbol = "[\\$](bold fg:#a6e3a1)"
+error_symbol = "[✗](bold fg:#f38ba8)"
+
+# TIME
+[time]
+disabled = false
+format = "[ $time 🕒 ]($style)"
+time_format = "%R"
+utc_time_offset = "local"
+style = "italic dimmed white"
+
+# STATUS (exit code)
+[status]
+disabled = false
+style = "bold fg:#f38ba8"
+format = "[ ✗ ]($style)"
+map_symbol = true
